@@ -2,7 +2,16 @@
 --------------------------------------------------------------------
     Programa para separar una cadena con diferentes delimitadores
 --------------------------------------------------------------------
-    DESCRIPCION: Se realizo una separacion mediante comillas o con espacios segun sea el caso del ingreso. Se utilizo la fgets que devuelve la cadena de caracteres completa y la copia en una variable. Para separar usamos el strtok que separa segun un delimitador. Devuelve a la funcion main los valores separados mediante arreglo de punteros.
+    DESCRIPCION: Se realizo una separacion mediante comillas o con espacios segun sea el caso del ingreso. Se utilizo la fgets que devuelve la cadena de caracteres completa y la copia en una variable. Para separar usamos el strtok que separa segun un delimitador. Devuelve a la funcion main los valores separados mediante arreglo de punteros. Valores a ingresar:
+
+    
+    COMANDOS:
+
+        version : Imprime la version de la terminal
+        echo [arg]: Imprime lo igresado en arg, si se ingresa una cadena entre comillas imprime la cadena enter
+        set[posicion][valor]: Asigna a una posicion de memoria un valor
+        get[posicion]: Devuelve el valor en esa posicion de memoria
+        reset: Pone en 0 toda la memoria           
 
     AUTHOR: Francisco Andrade
 */
@@ -10,6 +19,12 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+
+//Colores para la terminal
+#define ANSI_COLOR_MAGENTA "\x1b[35m"
+#define ANSI_COLOR_RESET   "\x1b[0m"
+#define ANSI_COLOR_CYAN    "\x1b[36m"
+#define ANSI_COLOR_RED     "\x1b[31m"
 
 void separar(char*,char**,int);
 int verificar_dato(char*,char*,int);
@@ -26,7 +41,10 @@ int main (void){
 
     while(1){
 
+        printf(ANSI_COLOR_MAGENTA);
         printf("\nterminal$ ");
+        printf(ANSI_COLOR_RESET);
+
         // Variables para la entrada
         const int TAM = 40;
         char entrada[TAM];
@@ -43,6 +61,11 @@ int main (void){
 
         switch(verificacionReservadas(cadena_separada)){ //Esto me esta dando   problemas
  
+            // Si el valor ingresado es incorrecto
+            case -1:
+                puts("\nEl comando no funciona\n");
+            break;
+
             // Imprime la version
             case 0:
                 puts("\nversion 0.0.1");
@@ -59,8 +82,10 @@ int main (void){
                 posicion = atoi(*(cadena_separada+1));
                 valor = atoi(*(cadena_separada+2));
                 //Si validamos guarda sino imprime error
-                if (verificacionRango(posicion,0,64) == 1 && verificacionRango(valor,0,64) == 1)
+                if (verificacionRango(posicion,0,64) == 1 && verificacionRango(valor,0,64) == 1){
                     memoria[posicion]=valor;
+                    puts("\nAsigando");
+                }
                 else
                     printf("\nComando no funciona: set [posicion] [valor]\n\n\t [posicion]: de 0 a 64\n[valor]: de 0 a 64\n");
             break;
@@ -73,6 +98,14 @@ int main (void){
                 else
                     printf("\nComando no funciona: get [posicion] \n\n\t [posicion]: de 0 a 64\n");
             break;
+
+            //Funcion todo a 0
+            case 4:
+                for(int i=0; i<TAM ;i++){
+                    memoria[i]=0;
+                }
+                puts("okey\n");
+            
         }
     }
 }
