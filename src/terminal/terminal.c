@@ -38,7 +38,8 @@ int main (void){
     int valor;
     int posicion;
     int memoria[40]={0};
-
+    system("clear");
+  
     while(1){
 
         printf(ANSI_COLOR_MAGENTA);
@@ -74,7 +75,7 @@ int main (void){
             // Funcion echo
             case 1:
                 separar(entrada_echo,cadena_echo,1);
-                puts(*(cadena_echo+1));
+                printf("\n%s\n",*(cadena_echo+1));
             break;
 
             // Funcion set
@@ -104,7 +105,7 @@ int main (void){
                 for(int i=0; i<TAM ;i++){
                     memoria[i]=0;
                 }
-                puts("okey\n");
+                puts("\nokey\n");
             
         }
     }

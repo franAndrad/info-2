@@ -1,0 +1,14 @@
+CC=gcc
+FLAGS=-Wall
+OBJS= main.o hola.o
+
+hola: main.o hola.o
+	$(CC) -o hola $(OBJS) 
+
+%.o: %.c #de todos los .c generame un .o
+	$(CC)(CFLAGS) -o $@ -c $< # @: la salida  <: el archivo de entrada
+
+clean:
+	rm -f hola hola.o main.o #Borra los archivos
+
+#Cuando ponemos el make podemos poner que target ejecutar por ejemple make clean solo va a limpiar
