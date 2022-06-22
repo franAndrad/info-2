@@ -1,0 +1,4 @@
+hola: main.o hola.o
+
+main.o: main.c
+hola.o: hola.c

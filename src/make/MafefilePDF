@@ -1,0 +1,22 @@
+#Nombre de la aplicacion
+PROG = myapp
+
+#Ociones de construccion
+CC = gcc #Compilador a utilizar
+INCLUDE = ./inc #Directorio de headers
+SOURCES = main.c 1.c 2.c 3.c #Archivos fuentes
+OBJECTS = $(SOURCES: .c = .o) #Archivos objetos
+CFLAGS = -g -Wall -std=c90 #Opciones de desarrollo
+#CFLAGS = Wall -std=c90 #Opciones de release
+
+all: $(PROG)
+
+$(PROG): (OBJECTS)
+	$(CC) -o $(PROG) $(OBJECTS)
+
+%.o %.crea
+	$(CC) $(CFLAGS) -I$(INCLUDE) 	-o $@ -c $<
+
+.PHONY : clean
+clean:
+	rm -f $(OBJECTS)

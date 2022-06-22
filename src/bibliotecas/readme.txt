@@ -1,0 +1,1 @@
+-I [directorio] con eso encontramos la biblioteca estatica

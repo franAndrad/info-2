@@ -1,0 +1,8 @@
+Con el make si tenemos muchos archivos fuentes y modificamos un solo vuelve a compilar solo el que se modifico. Se da cuenta de cual tiene que recompilar con la fecha del archivo
+
+target: dependeny ...
+
+ejemplo:
+
+main.o : main.c
+	gcc -Wall -c main.c
